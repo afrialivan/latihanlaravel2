@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,8 @@ class HomeController extends Controller
     {
         return view('home', [
             'title' => 'Home',
-            'posts' => Post::all()
+            'posts' => Post::latest()->paginate(6)
+            
         ]);
     }
 
@@ -29,7 +31,7 @@ class HomeController extends Controller
     {
         return view('/create', [
             'title' => 'Create',
-            
+
         ]);
     }
 
